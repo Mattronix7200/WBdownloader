@@ -29,11 +29,6 @@ Repozytorium to zawiera dwa katalogi, jeden o nazwie "bin" zawiera podgląd cał
 
 Jeśli chcesz pobrać instalator naszej aplikacji, skorzystaj z tego linku: https://windowsbase.pl/uploads/app/wbd_setup.exe
 
-=====================
-Copyright by WindowsBASE.pl 
-2022
-
-
 
 README: English language
 ===============================
@@ -63,6 +58,3 @@ This repository contains two folders, one named "bin" contains a preview of the 
 
 If you want to download the installer of our application, please use this link: https://windowsbase.pl/uploads/app/wbd_setup.exe
 
-=====================
-Copyright by WindowsBASE.pl 
-2022
