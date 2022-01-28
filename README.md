@@ -1,4 +1,6 @@
-# WBdownloader
+# WBdownloader (Menadżer pobierania- WindowsBASE.pl)
+
+<img src="https://i.imgur.com/K687xV5.png"/>
 
 README: Język Polski
 ===============================
@@ -29,7 +31,6 @@ Program korzysta z następujących komponentów:
 Repozytorium to zawiera dwa katalogi, jeden o nazwie "bin" zawiera podgląd całości plików wykonywalnych, które zostały utworzone i wykorzystane do prawidłowego działania całej aplikacji. Pliki znajdujące się w tym katalogu, można kompilować lub nad nimi pracować (np.: poprawiać kod). Drugi katalog "WBdownloader", to z kolei gotowa skompilowana wersja całej aplikacji, bez możliwości edycji jakichkolwiek plików, ponieważ są to gotowe pliki wykonywalne (.exe). Jeśli więc chciałbyś podejrzeć kod, np. aby upewnić się, że pliki są bezpieczne, lub dokonać zmian w kodzie, skorzystaj z folderu "bin".
 
 Jeśli chcesz pobrać instalator naszej aplikacji, skorzystaj z tego linku: https://windowsbase.pl/uploads/app/wbd_setup.exe
-
 
 README: English language
 ===============================
