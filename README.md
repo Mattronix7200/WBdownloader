@@ -23,6 +23,7 @@ Program korzysta z następujących komponentów:
         <li><a target="_blank" href="http://css3pie.com/documentation/building-pie-from-source/">CSS3 PIE</a></li>
         <li><a target="_blank" href="https://www.flaticon.com/">Flaticons</a></li>
         <li><a target="_blank" href="https://github.com/google/fonts">Google Fonts</a></li>
+        <li><a href="#">Microsoft (R) HTML Application</a></li>
 </ul>
 
 Repozytorium to zawiera dwa katalogi, jeden o nazwie "bin" zawiera podgląd całości plików wykonywalnych, które zostały utworzone i wykorzystane do prawidłowego działania całej aplikacji. Pliki znajdujące się w tym katalogu, można kompilować lub nad nimi pracować (np.: poprawiać kod). Drugi katalog "WBdownloader", to z kolei gotowa skompilowana wersja całej aplikacji, bez możliwości edycji jakichkolwiek plików, ponieważ są to gotowe pliki wykonywalne (.exe). Jeśli więc chciałbyś podejrzeć kod, np. aby upewnić się, że pliki są bezpieczne, lub dokonać zmian w kodzie, skorzystaj z folderu "bin".
@@ -52,6 +53,7 @@ The program uses the following components:
         <li><a target="_blank" href="http://css3pie.com/documentation/building-pie-from-source/">CSS3 PIE</a></li>
         <li><a target="_blank" href="https://www.flaticon.com/">Flaticons</a></li>
         <li><a target="_blank" href="https://github.com/google/fonts">Google Fonts</a></li>
+        <li><a href="#">Microsoft (R) HTML Application</a></li>
 </ul>
 
 This repository contains two folders, one named "bin" contains a preview of the entire executable files that were created and used to make the entire application work properly. The files in this directory, can be compiled or worked on (e.g.: improve the code). The second folder "WBdownloader", in turn, is a ready compiled version of the whole application, without the possibility to edit any files, because they are ready-made executable files (.exe). So, if you would like to view the code, e.g. to make sure the files are safe, or to make changes to the code, please use the "bin" folder.
