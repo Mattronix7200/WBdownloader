@@ -1,0 +1,432 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+   font-family: 'Open Sans', sans-serif;
+}
+
+html,
+body {
+   text-align: center;
+}
+
+body {
+   background: url('../data/bkg.jpg');
+   background-size: cover;
+   background-attachment: fixed;
+   margin: 0 auto;
+}
+
+.section {
+   margin-top: 30px;
+   width: 720px;
+   margin-left: auto;
+   margin-right: auto;
+   margin-bottom: 100px;
+   height: auto;
+   border: 2px solid white;
+   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#4cffffff', endColorstr='#4cffffff');
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+   behavior: url(bin/PIE.htc);
+}
+
+.section2 {
+   width: 600px;
+   margin-left: auto;
+   margin-right: auto;
+   height: auto;
+}
+
+input {
+   padding: 10px;
+   margin: 20px;
+   background: gray;
+   color: white;
+   border: 3px solid white;
+   font-weight: bold;
+}
+
+.btm1 {
+   color: gray;
+   font-size: 12px;
+   font-weight: bold;
+}
+
+.btm2 {
+   color: gray;
+   font-size: 12px;
+}
+
+img {
+   display: none;
+}
+
+.icon {
+    display: block;
+    width: 32px;
+    position: fixed;
+    position: sticky;
+    right: 45px;
+    top: 110px;
+    cursor: pointer;
+}
+
+.icon2 {
+    display: block;
+    width: 32px;
+    position: fixed;
+    position: sticky;
+    right: 45px;
+    top: 160px;
+    cursor: pointer;
+}
+
+.icon3 {
+    display: block;
+    width: 32px;
+    position: fixed;
+    position: sticky;
+    right: 45px;
+    top: 210px;
+    cursor: pointer;
+}
+
+.icon4 {
+    display: block;
+    width: 32px;
+    position: fixed;
+    position: sticky;
+    right: 45px;
+    top: 260px;
+    cursor: pointer;
+}
+
+.icon5 {
+    display: block;
+    width: 32px;
+    position: fixed;
+    position: sticky;
+    right: 45px;
+    top: 310px;
+    cursor: pointer;
+}
+
+.icon6 {
+   display: block;
+   width: 32px;
+   position: fixed;
+   position: sticky;
+   right: 45px;
+   top: 360px;
+   cursor: pointer;
+}
+
+.menu {
+    width: 40px;
+    height: 310px;
+    padding: 0px 10px;
+    background-color: #001e3a;
+    display: block;
+    position: fixed;
+    position: sticky;
+    top: 100px;
+    right: 30px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    behavior: url(bin/PIE.htc);
+}
+
+ul, ol, li {
+   list-style: none;
+}
+
+a, label, h1, h3 {
+   color: white;
+}
+
+h3 {
+   font-style: italic;
+}
+
+.s2 {
+   color: #caec0b;
+   font-weight: bold;
+}
+
+a:hover {
+   color: cadetblue;
+}
+
+#dinfo,
+#dinfo2 {
+   display: block;
+   display: none;
+   width: 100%;
+   background: #e9e92e;
+   padding: 10px 0px;
+   cursor: pointer;
+}
+
+#dinfo:hover, #dinfo2:hover {
+   font-weight: bold;
+}
+
+#dinfo a,
+#dinfo2 a {
+   color: tomato;
+}
+
+.btn, .btn2 {
+   color: white;
+   display: block;
+   width: 100%;
+   padding: 10px 0px;
+   margin: 0 0 20px 0;
+   border: 0;
+   box-shadow: 2px 2px 2px #004175;
+   border-collapse: separate;
+   background: #1e5799;
+   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e5799', endColorstr='#7db9e8', GradientType=0);
+}
+
+.search {
+   position: fixed;
+   position: sticky;
+   bottom: 0;
+   right: 0;
+   width: 100%;
+   display: block;
+   background: #ffffff;
+   padding:0;
+   border-top: 3px solid rgb(51, 163, 255);
+   display: none;
+}
+
+.search_bar,
+#button {
+   border: 1px solid #397ebe;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: #666 0px 2px 10px;
+   -moz-box-shadow: #666 0px 2px 10px;
+   box-shadow: #666 0px 2px 10px;
+   background: #A8D7FF;
+   background: -webkit-gradient(linear, 0 0, 0 bottom, from(#A8D7FF), to(#A8D7FF));
+   background: -webkit-linear-gradient(#A8D7FF, #A8D7FF);
+   background: -moz-linear-gradient(#A8D7FF, #A8D7FF);
+   background: -ms-linear-gradient(#A8D7FF, #A8D7FF);
+   background: -o-linear-gradient(#A8D7FF, #A8D7FF);
+   background: linear-gradient(#A8D7FF, #A8D7FF);
+   -pie-background: linear-gradient(#A8D7FF, #A8D7FF);
+   behavior: url(bin/PIE.htc);
+   padding: 5px;
+   color: black;
+}
+
+.search_bar {
+   width: 60%;
+}
+
+#button {
+   width: 10%;
+}
+
+#dialog {
+   position: fixed;
+   position: sticky;
+   top: 30vh;
+   left: 22vw;
+   width: 50%;
+   display: block;
+   background: #ffffff;
+   border: 3px solid rgb(51, 163, 255);
+   padding: 20px;
+   display: none;
+   z-index: 2;
+}
+
+#dialog_bkg {
+   position: fixed;
+   position: sticky;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   display: none;
+   background:rgb(0,0,0);
+   background:rgba(0,0,0,0.7);
+   -pie-background:rgba(0,0,0,0.7);
+   z-index: 1;
+}
+
+#dialog button {
+   margin: 0 10px 0 10px;
+}
+
+.vsite {
+   position: fixed;
+   position: sticky;
+   bottom: 0;
+   left: 23vw;
+   padding-bottom: 5px;
+}
+
+.vsite a {
+   color: steelblue;
+}
+
+.vsite a:hover {
+   color: #024077;
+}
+
+.warning {
+  width:80%;
+  background: lightyellow;
+  border: 1px solid orange;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.warning p {
+   color: black;
+   font-size: 12px;
+   text-align: justify;
+}
+
+.toolsbox, .faqbox, .newsbox {
+   background: white;
+   border-left: 2px solid steelblue;
+   height: 100%;
+   position: fixed;
+   position: sticky;
+   width: 25%;
+   z-index: 3;
+   right: 0;
+   top: 0;
+   display: none;
+}
+
+.listtoolbox li, .listfaqbox li, .listnewsbox li {
+   list-style: square;
+   text-align: left;
+   color: gray;
+   font-size: 12px;
+   padding-right: 10px;
+   padding-bottom: 10px;
+}
+
+.listtoolbox li:hover, .listfaqbox li:hover, .listnewsbox li:hover {
+   color: rgb(45, 124, 214);
+   text-decoration: underline;
+   cursor: pointer;
+}
+
+.closebtn {
+   position: fixed;
+   position: sticky;
+   top:0;
+   right: 20px;
+   font-weight: bold;
+}
+
+.closebtn2 {
+    position: fixed;
+    position: sticky;
+    bottom:25px;
+    right: 25px;
+    font-weight: bold;
+ }
+
+ .closebtn3 {
+   position: fixed;
+   position: sticky;
+   top:32vh;
+   right: 25vw ;
+}
+
+.link_nhref {
+    color: gray;
+    text-decoration: none;
+}
+
+.iconx {
+    display: block;
+    width: 16px;
+}
+
+.logo {
+    display: block;
+    margin: 20px auto;
+}
+
+.icon:hover, .icon2:hover, .icon3:hover, .icon4:hover, .icon5:hover {
+   background-color: #0099ff;
+   -webkit-border-radius: 10px;
+   -moz-border-radius: 10px;
+   border-radius: 10px;
+   padding:5px;
+   right:40px;
+   behavior: url(bin/PIE.htc);
+   transition: linear 0.4s;
+}
+
+.tag_1, .tag_2, .tag_3, .tag_4, .tag_5, .tag_6 {
+   display: none;
+   padding: 5px;
+   position: fixed;
+   position: sticky;
+   -webkit-border-radius: 10px;
+   -moz-border-radius: 10px;
+   border-radius: 10px;
+   cursor: pointer;
+   background-color: white;
+   border: 1px solid #2d7cd6;
+   width: 120px;
+}
+
+.tag_1 {
+   right: 100px;
+   top: 113px;
+}
+
+.tag_2 {
+   right: 100px;
+   top: 163px;
+}
+
+.tag_3 {
+   right: 100px;
+   top: 213px;
+}
+
+.tag_4 {
+   right: 100px;
+   top: 263px;
+}
+
+.tag_5 {
+   right: 100px;
+   top: 313px;
+}
+
+.tag_6 {
+   right: 100px;
+   top: 363px;
+}
+
+#frmFile3 {
+border: 1px solid lightslategray;
+width: 80%;
+background-color: #bcdcf8;
+height: 220px;
+display: block;
+margin: 0 auto;
+text-align: center;
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+behavior: url(bin/PIE.htc);
+}

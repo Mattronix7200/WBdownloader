@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=9">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>WindowsBASE.pl- Menadżer pobierania (0.1.83)</title>
+   <link rel="stylesheet" href="style.css">
+   <HTA:APPLICATION ICON="https://windowsbase.pl/images/wbd_favicon.ico" navigable="yes" MAXIMIZEBUTTON="NO" BORDER="DIALOG">
+</head>
+
+<body>
+   <div id="dialog_bkg"></div>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+   <script src='../data/mydata.js'></script>
+   <script src="../bin/clipboard.min.js"></script>
+   <script src='../bin/jquery.corner.js'></script>
+   <script>
+      window.resizeTo(1024, 720);
+      window.moveTo((screen.width - 950) / 2, (screen.height - 750) / 2);
+
+      if (typeof console === "undefined") {
+         var console = { log: function (logMsg) { } };
+      }
+      console.log(myData);
+
+      var htmlText = '';
+      htmlText += '<div class="section">';
+      htmlText += '<h1>Menadżer pobierania- WindowsBASE.pl</h1>';
+      htmlText += '<h3>Kliknij w jeden z poniższych linków, by rozpocząć pobieranie</h3><hr class="collapse">';
+      for (var key in myData) {
+         htmlText += '<div class="section2" key={index} onClick={handleRowClick} data-id={row.nazwa_obrazu}>';
+         htmlText += '<p class="s2">Kategoria: ' + myData[key].kategoria + '</p>';
+         htmlText += myData[key].nazwa_obrazu;
+         htmlText += '</div><hr class="collapse">';
+      }
+      htmlText += '</div">';
+
+      $('body').append(htmlText); 
+
+      // var kat= myData[key].nazwa_obrazu;
+      // var kat_1= kat.substr(kat.indexOf('<span>'), kat.indexOf('</span>')); 
+      // var kat_2= kat_1.substring(kat_1.indexOf("<span>")+6);
+      // var kat_3= kat_2.substring(0, kat_2.length-17);
+      // var kat_4= 'Wybrałeś następujący plik do pobrania:<br><br><b>'+ kat_3 + '</b><br><br>Za pomocą jakiego narzędzia chcesz go pobrać?';
+      
+      var clipboard = new ClipboardJS('.btn'); 
+      var clipboard = new ClipboardJS('.btn2'); 
+
+      $(document).ready(function () {
+         $(".btn").click(function () {
+        $("#dialog").show();
+        $("#dialog_bkg").show();
+      //   $("#employee_table").html(kat_4);
+         });
+
+         $("#aria").click(function () {
+            $("#dialog_bkg").hide();
+            $("#dialog").hide();
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\download_aria.exe");
+         });
+
+         $("#fdm").click(function () {
+            $("#dialog_bkg").hide();
+            $("#dialog").hide();
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\download_fdm.exe");
+         });
+         
+       $("#jd").click(function () {
+         $("#dialog_bkg").hide();
+         $("#dialog").hide();
+         var WshShell = new ActiveXObject("Wscript.Shell");
+         WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\download_jd.exe");
+         });
+      });
+
+      function grabMegaDL() {
+         var WshShell = new ActiveXObject("Wscript.Shell");
+         WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\download_jd.exe");
+      }
+
+      clipboard.on('success', function (e) {
+         console.info('Action:', e.action);
+         console.info('Text:', e.text);
+         console.info('Trigger:', e.trigger);
+         e.clearSelection();
+      });
+
+      clipboard.on('error', function (e) {
+         console.error('Action:', e.action);
+         console.error('Trigger:', e.trigger);
+      });
+
+      window.onerror = function () {
+         return true
+      } 
+
+   //    $(document).ready(function(){
+   //    $('#selected').html(kat_4);
+   //   })
+
+   </script>
+
+
+<dialog id="dialog">
+   <p class="closebtn3"><img class="iconx" src="_icons/x_icon.png"></img></p>
+   <p id="selected"><b>Za pomocą jakiego narzędzia chciałbyś pobrać ten plik?</b></p>
+   <p id="employee_table"></p>
+   <button id="aria">aria2c (CMD)</button><button id="fdm">Free Download Manager</button><button id="jd">JDownloader2</button><br>
+   <div style="display: inline-block; max-width: 100%; width: 30%;">   
+      <span style="font-size: 10px; text-align: left;">(32/64-bit- wiersz poleceń)</span>
+   </div>
+   <div style="display: inline-block; max-width: 100%; width: 30%;">   
+      <span style="font-size: 10px; text-align: left;">(64-bit- program)</span>
+   </div>
+   <div style="display: inline-block; max-width: 100%; width: 30%;">   
+      <span style="font-size: 10px; text-align: left;">(32-bit- program)</span>
+   </div>
+ </dialog>
+
+   <script type="text/javascript">
+
+$(".closebtn3").click(function () {
+            $("#dialog_bkg").hide();
+            $("#dialog").hide();
+         });
+
+      var latestAppversion = '0.1.83';
+
+
+      function LoadFile() {
+         var oFrame = document.getElementById("frmFile");
+         var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+         while (strRawContents.indexOf("\r") >= 0)
+            strRawContents = strRawContents.replace("\r", "");
+         var arrLines = strRawContents.split("\n");
+         for (var i = 0; i < arrLines.length; i++) {
+            var curLine = arrLines[i];
+            if (curLine > latestDbversion) {
+               $('#dinfo').fadeIn(400);
+            }
+            else {
+               console.log('');
+            }
+         }
+         $('#btmi').text("Wersja bazy: " + + latestDbversion);
+      }
+
+      function LoadFile2() {
+         var oFrame = document.getElementById("frmFile2");
+         var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+         while (strRawContents.indexOf("\r") >= 0)
+            strRawContents = strRawContents.replace("\r", "");
+         var arrLines = strRawContents.split("\n");
+         for (var i = 0; i < arrLines.length; i++) {
+            var curLine3 = arrLines[i];
+            if (curLine3 > latestAppversion) {
+               $('#dinfo2').fadeIn(400);
+            }
+            else {
+               console.log('');
+            }
+         }
+         $('#btmo').text("Wersja programu: (Beta) " + latestAppversion);
+      }
+
+   </script>
+   <iframe id="frmFile" src="https://windowsbase.pl/uploads/app/verDb.txt" onload="LoadFile();"
+      style="display: none;"></iframe>
+   <iframe id="frmFile2" src="https://windowsbase.pl/uploads/app/verApp.txt" onload="LoadFile2();"
+      style="display: none;"></iframe>
+   <div id="dinfo">
+      <a onclick="update()">Baza danych jest nieaktualna! Kliknij tutaj by ją zaktualizować.</a>
+   </div>
+
+   <div id="dinfo2">
+      <a onclick="update2()">Program jest nieaktualny. Kliknij tutaj by go zaktualizować.</a>
+   </div>
+
+   <img class="logo" src="_icons/logo.png" alt=""/>
+
+<div class="menu">
+<span id="tools"><img class="icon" src="_icons/repair-tools.png"></img></span>
+<span id="faq"><img class="icon2" src="_icons/faq.png"></img></span>
+<span id="news"><img class="icon3" src="_icons/newspaper.png"></img></span>
+<span id="searchsite"><img class="icon4" src="_icons/search.png"></img></span>
+<span id="web"><img class="icon5" src="_icons/home.png"></img></span>
+<span id="tren"><img class="icon6" src="_icons/uk.png"></img></span>
+</div>
+
+<div class="tag_1"><span style="font-size:14px; font-weight:bold;">Narzędzia</span></div> 
+<div class="tag_2"><span style="font-size:14px; font-weight:bold;">Pytania FAQ</span></div> 
+<div class="tag_3"><span style="font-size:14px; font-weight:bold;">Informacje</span></div> 
+<div class="tag_4"><span style="font-size:14px; font-weight:bold;">Szukajka</span></div> 
+<div class="tag_5"><span style="font-size:14px; font-weight:bold;">Strona główna</span></div> 
+<div class="tag_6"><span style="font-size:14px; font-weight:bold;">Change to English</span></div>  
+
+
+<script>
+$("#tools").hover(function(){
+    $('.tag_1').show();
+},function(){
+    $('.tag_1').hide();
+});
+
+$("#faq").hover(function(){
+    $('.tag_2').show();
+},function(){
+    $('.tag_2').hide();
+});
+
+$("#news").hover(function(){
+    $('.tag_3').show();
+},function(){
+    $('.tag_3').hide();
+});
+
+$("#searchsite").hover(function(){
+    $('.tag_4').show();
+},function(){
+    $('.tag_4').hide();
+});
+
+$("#web").hover(function(){
+    $('.tag_5').show();
+},function(){
+    $('.tag_5').hide();
+});
+
+$("#tren").hover(function(){
+    $('.tag_6').show();
+},function(){
+    $('.tag_6').hide();
+});
+
+document.getElementById("tren").onclick = function () {
+        location.href = "idx_len.hta";
+    };
+</script>
+
+<div class="toolsbox">
+<p class="closebtn"><img class="iconx" src="_icons/x_icon.png"></img></p>
+<h2>Narzędzia</h2>
+<ul class="listtoolbox">
+   <li id="soft1" onclick="runsoft1()">Uruchom konsolę CMD (wiersz poleceń)</li>
+   <li id="soft2" onclick="runsoft2()">Nagraj/utwórz obraz ISO <b>(BurnAware)</b></li>
+   <li id="soft3" onclick="runsoft3()">Nagraj/utwórz obraz IMG <b>(IMGBurn)</b></li>
+   <li id="soft4" onclick="runsoft4()">Zamontuj obraz ISO <b>(WinCDEmu)</b></li>
+   <li id="soft5" onclick="runsoft5()">Konwertuj obraz ISO do MDF <b>(MDF to ISO)</b></li>
+   <li id="soft6" onclick="runsoft6()">Konwertuj obraz WIM/ESD do ISO <b>(DISM++)</b> [32-bit]</li>
+   <li id="soft7" onclick="runsoft7()">Konwertuj obraz WIM/ESD do ISO <b>(DISM++)</b> [64-bit]</li>
+   <li id="soft8" onclick="runsoft8()">Utwórz nośnik instalacyjny <b>(Rufus)</b></li>
+   <li id="soft9" onclick="runsoft9()">Utwórz nośnik instalacyjny <b>(WinSetupFromUSB)</b> [32-bit]</li>
+   <li id="soft10" onclick="runsoft10()">Utwórz nośnik instalacyjny <b>(WinSetupFromUSB)</b> [64-bit]</li>
+   <li id="soft11" onclick="runsoft11()">Uruchom narzędzie do kompresji <b>(7-Zip)</b></li>
+   <li id="soft12" onclick="runsoft12()">Uruchom narzędzie do partycjonowania <b>Macronit Partition Expert</b> [32-bit]</li>
+   <li id="soft13" onclick="runsoft13()">Uruchom narzędzie do partycjonowania <b>Macronit Partition Expert</b> [64-bit]</li>
+   <li id="soft14" onclick="runsoft14()">Uruchom narzędzie do czyszczenia systemu <b>Command Clean</b></li>
+</ul>
+</div>
+
+<div class="faqbox">
+   <p class="closebtn"><img class="iconx" src="_icons/x_icon.png"></img></p>
+   <h2>Poradniki</h2>
+   <ul class="listfaqbox">
+      <li><a class="link_nhref" target="_blank" href="https://windowsbase.pl/pages/convertingesd.html">Konwersja plików ESD na ISO</a></li>
+      <li><a class="link_nhref" target="_blank" href="https://windowsbase.pl/pages/vmconvert.html">Konwersja dysków wirtualnych</a></li>
+      <li><a class="link_nhref" target="_blank" href="https://windowsbase.pl/pages/vmmountmdf.html">Montowanie plików MDF</a></li>
+      <li><a class="link_nhref" target="_blank" href="https://windowsbase.pl/pages/vmcreate.html">Konfiguracja maszyn wirtualnych</a></li>
+      <li><a class="link_nhref" target="_blank" href="https://windowsbase.pl/pages/vmaddmachine.html">Dodawanie maszyn wirtualnych</a></li>
+      <li><a class="link_nhref" target="_blank" href="https://windowsbase.pl/pages/vmboxusb.html">Dodawanie urządzeń USB do maszyny wirtualnej</a></li>
+      <li><a class="link_nhref" target="_blank" href="https://windowsbase.pl/pages/vmboxclipboard.html">Kopiowanie danych pomiędzy maszynami wirtualnymi</a></li>
+      <li><a class="link_nhref" target="_blank" href="https://windowsbase.pl/pages/makebootabledevice.html">Tworzenie bootowalnego nośnika</a></li>
+      <li><a class="link_nhref" target="_blank" href="https://windowsbase.pl/pages/multibootusb.html">Tworzenie nośnika wielo-rozruchowego</a></li>
+      <li><a class="link_nhref" target="_blank" href="https://windowsbase.pl/pages/windows7install.html">Instalacja systemu Windows Vista/7</a></li>
+      <li><a class="link_nhref" target="_blank" href="https://windowsbase.pl/pages/windows8install.html">Instalacja systemu Windows 8/8.1</a></li>
+      <li><a class="link_nhref" target="_blank" href="https://windowsbase.pl/pages/w10install.html">Instalacja systemu Windows 10</a></li>
+      <li><a class="link_nhref" target="_blank" href="https://windowsbase.pl/pages/rescuecommands.html">Lista komend (CMD)</a></li>
+      <li><a class="link_nhref" target="_blank" href="https://windowsbase.pl/pages/infobetas.html">Systemy rozwojowe (Beta)</a></li>
+   </ul>
+   </div>
+
+   <div class="newsbox">
+      <p class="closebtn"><img class="iconx" src="_icons/x_icon.png"></img></p>
+      <h2>Informacje i wiadomości</h2>
+           <br>
+         <iframe id="frmFile3" src="https://windowsbase.pl/uploads/app/news.hta"></iframe>
+         <br><br>
+
+            <ul class="listnewsbox">
+               <li onclick="runInfo()">Pokaż informacje o programie</li>
+               <li onclick="runGuide()" href="#">Baza pytań [FAQ]</li>
+               <li onclick="updateInfo()" href="#">Co nowego?</li>
+            </ul>
+            <hr width="80%">
+            <p class="btm1" id="btmo"></p>
+            <p class="btm1" id="btmi">Wersja bazy:</p>
+      </div>
+   <script>
+
+      $("#web").click(function () {
+         var WshShell = new ActiveXObject("Wscript.Shell");
+         WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\site.exe");
+         });
+
+
+         $("#news").click(function () {
+            $("#dialog_bkg").show();
+            $(".newsbox").show();
+         });
+
+      $("#news").click(function () {
+            $("#dialog_bkg").show();
+            $(".newsbox").show();
+         });
+
+      $(".closebtn").click(function () {
+            $("#dialog_bkg").hide();
+            $(".newsbox").hide();
+         });
+
+
+      $("#faq").click(function () {
+            $("#dialog_bkg").show();
+            $(".faqbox").show();
+         });
+
+      $(".closebtn").click(function () {
+            $("#dialog_bkg").hide();
+            $(".faqbox").hide();
+         });
+
+      $("#tools").click(function () {
+            $("#dialog_bkg").show();
+            $(".toolsbox").show();
+         });
+
+      $(".closebtn").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+         });
+
+         $("#soft1").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("cmd.exe");
+         });
+
+         $("#soft2").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_baf.exe");
+         });
+
+         $("#soft3").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_ib.exe");
+         });
+
+         $("#soft4").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_wcd.exe");
+         });
+
+         $("#soft5").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_mti.exe");
+         });
+
+         $("#soft6").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_dism1.exe");
+         });
+
+         $("#soft7").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_dism2.exe");
+         });
+
+         $("#soft8").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_rfs.exe");
+         });
+
+         $("#soft9").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_wsfu1.exe");
+         });
+
+         $("#soft10").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_wsfu2.exe");
+         });
+
+         $("#soft11").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\7z\\7zFM.exe");
+         });
+
+         $("#soft12").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_mde1.exe");
+         });
+
+         $("#soft13").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_mde2.exe");
+         });
+
+         $("#soft14").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_cc.exe");
+         });
+
+         function runInfo() {
+         var WshShell = new ActiveXObject("Wscript.Shell");
+         WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\runinfo.exe");
+      }
+
+      function runGuide() {
+         var WshShell = new ActiveXObject("Wscript.Shell");
+         WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\runguide.exe");
+      }
+
+      function updateInfo() {
+         var WshShell = new ActiveXObject("Wscript.Shell");
+         WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\info.exe");
+      }
+
+      function update() {
+         var WshShell = new ActiveXObject("Wscript.Shell");
+         WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\updatedb.exe");
+      }
+
+      function update2() {
+         var WshShell = new ActiveXObject("Wscript.Shell");
+         WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\runUpdate.bat");
+      }
+
+      function Search(item){
+            var collection = document.getElementsByClassName("section2");
+            var collection_col = document.getElementsByClassName("collapse");
+            for (i = 0;i < collection.length; i++){
+                if (((collection[i].innerHTML).toLowerCase()).indexOf(item) > -1) {
+                    collection[i].style.display = "block";
+                    collection_col[i].style.display = "block";
+                    } else {
+                        collection[i].style.display = "none";
+                        collection_col[i].style.display = "none";
+                        }
+            }
+    }   
+   </script>
+
+   <div class="search">
+      <p class="closebtn2"><img class="iconx" src="_icons/x_icon.png"></img></p>
+      <span>Szukaj w bazie:</span><input type = "text" id = "searchBar" class="search_bar" oninput = "Search((this.value).toLowerCase())">
+   </div>
+
+   <script>
+          $("#searchsite").click(function () {
+            $(".search").show();
+         });
+
+         $(".closebtn2").click(function () {
+            $(".search").hide();
+         });
+   </script>
+</body>
+</html>
