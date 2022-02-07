@@ -1,6 +1,6 @@
 # WBdownloader (Menadżer pobierania- WindowsBASE.pl)
 
-<img src="https://i.imgur.com/K687xV5.png" alt="okno programu-app view"/>
+<img src="https://i.imgur.com/wEr68xE.png" alt="okno programu-app view"/>
 
 README: Język Polski
 ===============================
