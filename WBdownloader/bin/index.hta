@@ -5,9 +5,9 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=9">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>WindowsBASE.pl- Menadżer pobierania (0.1.83)</title>
+   <title>WindowsBASE.pl- Menadżer pobierania</title>
    <link rel="stylesheet" href="style.css">
-   <HTA:APPLICATION ICON="https://windowsbase.pl/images/wbd_favicon.ico" navigable="yes" MAXIMIZEBUTTON="NO" BORDER="DIALOG">
+   <HTA:APPLICATION ICON="https://windowsbase.pl/images/wbd_favicon.ico" navigable="yes" MAXIMIZEBUTTON="NO" BORDER="DIALOG" contextmenu="no">
 </head>
 
 <body>
@@ -17,8 +17,8 @@
    <script src="../bin/clipboard.min.js"></script>
    <script src='../bin/jquery.corner.js'></script>
    <script>
-      window.resizeTo(1024, 720);
-      window.moveTo((screen.width - 950) / 2, (screen.height - 750) / 2);
+      window.resizeTo(900, 650);
+      window.moveTo((screen.width - 900) / 2, (screen.height - 670) / 2);
 
       if (typeof console === "undefined") {
          var console = { log: function (logMsg) { } };
@@ -26,25 +26,20 @@
       console.log(myData);
 
       var htmlText = '';
-      htmlText += '<div class="section">';
       htmlText += '<h1>Menadżer pobierania- WindowsBASE.pl</h1>';
-      htmlText += '<h3>Kliknij w jeden z poniższych linków, by rozpocząć pobieranie</h3><hr class="collapse">';
+      htmlText += '<h3>Kliknij w jeden z poniższych linków, by rozpocząć pobieranie</h3>';
+      htmlText += '<div class="section">';
       for (var key in myData) {
          htmlText += '<div class="section2" key={index} onClick={handleRowClick} data-id={row.nazwa_obrazu}>';
          htmlText += '<p class="s2">Kategoria: ' + myData[key].kategoria + '</p>';
+         htmlText += '<p class="s3"><b>Nazwa pliku: </b><i>' + myData[key].filename + '</i></p>';
          htmlText += myData[key].nazwa_obrazu;
          htmlText += '</div><hr class="collapse">';
-      }
-      htmlText += '</div">';
-
+   }
+   htmlText += '</div">';
+   
       $('body').append(htmlText); 
 
-      // var kat= myData[key].nazwa_obrazu;
-      // var kat_1= kat.substr(kat.indexOf('<span>'), kat.indexOf('</span>')); 
-      // var kat_2= kat_1.substring(kat_1.indexOf("<span>")+6);
-      // var kat_3= kat_2.substring(0, kat_2.length-17);
-      // var kat_4= 'Wybrałeś następujący plik do pobrania:<br><br><b>'+ kat_3 + '</b><br><br>Za pomocą jakiego narzędzia chcesz go pobrać?';
-      
       var clipboard = new ClipboardJS('.btn'); 
       var clipboard = new ClipboardJS('.btn2'); 
 
@@ -52,7 +47,6 @@
          $(".btn").click(function () {
         $("#dialog").show();
         $("#dialog_bkg").show();
-      //   $("#employee_table").html(kat_4);
          });
 
          $("#aria").click(function () {
@@ -98,10 +92,6 @@
          return true
       } 
 
-   //    $(document).ready(function(){
-   //    $('#selected').html(kat_4);
-   //   })
-
    </script>
 
 
@@ -128,7 +118,7 @@ $(".closebtn3").click(function () {
             $("#dialog").hide();
          });
 
-      var latestAppversion = '0.1.83';
+      var latestAppversion = '1.0';
 
 
       function LoadFile() {
@@ -140,7 +130,7 @@ $(".closebtn3").click(function () {
          for (var i = 0; i < arrLines.length; i++) {
             var curLine = arrLines[i];
             if (curLine > latestDbversion) {
-               $('#dinfo').fadeIn(400);
+               $('#udb').fadeIn(400);
             }
             else {
                console.log('');
@@ -158,13 +148,13 @@ $(".closebtn3").click(function () {
          for (var i = 0; i < arrLines.length; i++) {
             var curLine3 = arrLines[i];
             if (curLine3 > latestAppversion) {
-               $('#dinfo2').fadeIn(400);
+               $('#uap').fadeIn(400);
             }
             else {
                console.log('');
             }
          }
-         $('#btmo').text("Wersja programu: (Beta) " + latestAppversion);
+         $('#btmo').text("Wersja programu: " + latestAppversion);
       }
 
    </script>
@@ -172,13 +162,6 @@ $(".closebtn3").click(function () {
       style="display: none;"></iframe>
    <iframe id="frmFile2" src="https://windowsbase.pl/uploads/app/verApp.txt" onload="LoadFile2();"
       style="display: none;"></iframe>
-   <div id="dinfo">
-      <a onclick="update()">Baza danych jest nieaktualna! Kliknij tutaj by ją zaktualizować.</a>
-   </div>
-
-   <div id="dinfo2">
-      <a onclick="update2()">Program jest nieaktualny. Kliknij tutaj by go zaktualizować.</a>
-   </div>
 
    <img class="logo" src="_icons/logo.png" alt=""/>
 
@@ -189,6 +172,9 @@ $(".closebtn3").click(function () {
 <span id="searchsite"><img class="icon4" src="_icons/search.png"></img></span>
 <span id="web"><img class="icon5" src="_icons/home.png"></img></span>
 <span id="tren"><img class="icon6" src="_icons/uk.png"></img></span>
+<span id="uap"><img onclick="update()" class="icon7" src="_icons/app.ico"></img><div class="rlight1"></div></span>
+<span id="udb"><img onclick="update2()" class="icon8" src="_icons/db.ico"></img><div class="rlight2"></div></span>
+
 </div>
 
 <div class="tag_1"><span style="font-size:14px; font-weight:bold;">Narzędzia</span></div> 
@@ -197,6 +183,9 @@ $(".closebtn3").click(function () {
 <div class="tag_4"><span style="font-size:14px; font-weight:bold;">Szukajka</span></div> 
 <div class="tag_5"><span style="font-size:14px; font-weight:bold;">Strona główna</span></div> 
 <div class="tag_6"><span style="font-size:14px; font-weight:bold;">Change to English</span></div>  
+<div class="tag_7"><span style="font-size:14px; font-weight:bold;">Zaktualizuj program</span></div>  
+<div class="tag_8"><span style="font-size:14px; font-weight:bold;">Zaktualizuj bazę obrazów</span></div>  
+
 
 
 <script>
@@ -236,35 +225,731 @@ $("#tren").hover(function(){
     $('.tag_6').hide();
 });
 
+$("#uap").hover(function(){
+    $('.tag_7').show();
+    $('.rlight1').hide();
+},function(){
+    $('.tag_7').hide();
+});
+
+$("#udb").hover(function(){
+    $('.tag_8').show();
+    $('.rlight2').hide();
+},function(){
+    $('.tag_8').hide();
+});
+
+$(document).ready(function () {
+$("#soft2").hover(function(){
+    $('#stag1').show();
+    $('#softimg1').show();
+},function(){
+    $('#stag1').hide();
+    $('#softimg1').hide();
+});
+
+$("#soft3").hover(function(){
+    $('#stag1').show();
+    $('#softimg2').show();
+},function(){
+    $('#stag1').hide();
+    $('#softimg2').hide();
+});
+
+$("#soft29").hover(function(){
+    $('#stag1').show();
+    $('#softimg3').show();
+},function(){
+    $('#stag1').hide();
+    $('#softimg3').hide();
+});
+
+$("#soft4").hover(function(){
+    $('#stag2').show();
+    $('#softimg4').show();
+},function(){
+    $('#stag2').hide();
+    $('#softimg4').hide();
+});
+
+$("#soft5").hover(function(){
+    $('#stag3').show();
+    $('#softimg5').show();
+},function(){
+    $('#stag3').hide();
+    $('#softimg5').hide();
+});
+
+$("#soft11").hover(function(){
+    $('#stag4').show();
+    $('#softimg6').show();
+},function(){
+    $('#stag4').hide();
+    $('#softimg6').hide();
+});
+
+$("#soft22").hover(function(){
+    $('#stag5').show();
+    $('#softimg7').show();
+},function(){
+    $('#stag5').hide();
+    $('#softimg7').hide();
+});
+
+$("#soft18").hover(function(){
+    $('#stag6').show();
+    $('#softimg8').show();
+},function(){
+    $('#stag6').hide();
+    $('#softimg8').hide();
+});
+
+$("#soft24").hover(function(){
+    $('#stag7').show();
+    $('#softimg11').show();
+},function(){
+    $('#stag7').hide();
+    $('#softimg11').hide();
+});
+
+$("#soft31").hover(function(){
+    $('#stag7').show();
+    $('#softimg12').show();
+},function(){
+    $('#stag7').hide();
+    $('#softimg12').hide();
+});
+
+$("#soft32").hover(function(){
+    $('#stag8').show();
+    $('#softimg13').show();
+},function(){
+    $('#stag8').hide();
+    $('#softimg13').hide();
+});
+
+$("#soft43").hover(function(){
+    $('#stag9').show();
+    $('#softimg14').show();
+},function(){
+    $('#stag9').hide();
+    $('#softimg14').hide();
+});
+
+$("#soft44").hover(function(){
+    $('#stag9').show();
+    $('#softimg15').show();
+},function(){
+    $('#stag9').hide();
+    $('#softimg15').hide();
+});
+
+$("#soft45").hover(function(){
+    $('#stag10').show();
+    $('#softimg16').show();
+},function(){
+    $('#stag10').hide();
+    $('#softimg16').hide();
+});
+
+$("#soft25").hover(function(){
+    $('#stag11').show();
+    $('#softimg17').show();
+},function(){
+    $('#stag11').hide();
+    $('#softimg17').hide();
+});
+
+$("#soft26").hover(function(){
+    $('#stag12').show();
+    $('#softimg18').show();
+},function(){
+    $('#stag12').hide();
+    $('#softimg18').hide();
+});
+
+$("#soft27").hover(function(){
+    $('#stag12').show();
+    $('#softimg19').show();
+},function(){
+    $('#stag12').hide();
+    $('#softimg19').hide();
+});
+
+$("#soft6").hover(function(){
+    $('#stag13').show();
+    $('#softimg20').show();
+},function(){
+    $('#stag13').hide();
+    $('#softimg20').hide();
+});
+
+$("#soft7").hover(function(){
+    $('#stag13').show();
+    $('#softimg20').show();
+},function(){
+    $('#stag13').hide();
+    $('#softimg20').hide();
+});
+
+$("#soft23").hover(function(){
+    $('#stag14').show();
+    $('#softimg21').show();
+},function(){
+    $('#stag14').hide();
+    $('#softimg21').hide();
+});
+
+$("#soft14").hover(function(){
+    $('#stag15').show();
+    $('#softimg22').show();
+},function(){
+    $('#stag15').hide();
+    $('#softimg22').hide();
+});
+
+$("#soft20").hover(function(){
+    $('#stag15').show();
+    $('#softimg9').show();
+},function(){
+    $('#stag15').hide();
+    $('#softimg9').hide();
+});
+
+$("#soft21").hover(function(){
+    $('#stag15').show();
+    $('#softimg10').show();
+},function(){
+    $('#stag15').hide();
+    $('#softimg10').hide();
+});
+
+$("#soft30").hover(function(){
+    $('#stag16').show();
+    $('#softimg23').show();
+},function(){
+    $('#stag16').hide();
+    $('#softimg23').hide();
+});
+
+$("#soft42").hover(function(){
+    $('#stag16').show();
+    $('#softimg24').show();
+},function(){
+    $('#stag16').hide();
+    $('#softimg24').hide();
+});
+
+$("#soft39").hover(function(){
+    $('#stag17').show();
+    $('#softimg25').show();
+},function(){
+    $('#stag17').hide();
+    $('#softimg25').hide();
+});
+
+$("#soft40").hover(function(){
+    $('#stag17').show();
+    $('#softimg25').show();
+},function(){
+    $('#stag17').hide();
+    $('#softimg25').hide();
+});
+
+$("#soft8").hover(function(){
+    $('#stag19').show();
+    $('#softimg26').show();
+},function(){
+    $('#stag19').hide();
+    $('#softimg26').hide();
+});
+
+$("#soft9").hover(function(){
+    $('#stag19').show();
+    $('#softimg27').show();
+},function(){
+    $('#stag19').hide();
+    $('#softimg27').hide();
+});
+
+$("#soft10").hover(function(){
+    $('#stag19').show();
+    $('#softimg27').show();
+},function(){
+    $('#stag19').hide();
+    $('#softimg27').hide();
+});
+
+$("#soft12").hover(function(){
+    $('#stag20').show();
+    $('#softimg28').show();
+},function(){
+    $('#stag20').hide();
+    $('#softimg28').hide();
+});
+
+$("#soft13").hover(function(){
+    $('#stag20').show();
+    $('#softimg28').show();
+},function(){
+    $('#stag20').hide();
+    $('#softimg28').hide();
+});
+
+$("#soft16").hover(function(){
+    $('#stag21').show();
+    $('#softimg29').show();
+},function(){
+    $('#stag21').hide();
+    $('#softimg29').hide();
+});
+
+$("#soft17").hover(function(){
+    $('#stag21').show();
+    $('#softimg30').show();
+},function(){
+    $('#stag21').hide();
+    $('#softimg30').hide();
+});
+
+$("#soft19").hover(function(){
+    $('#stag22').show();
+    $('#softimg31').show();
+},function(){
+    $('#stag22').hide();
+    $('#softimg31').hide();
+});
+
+$("#soft34").hover(function(){
+    $('#stag23').show();
+    $('#softimg32').show();
+},function(){
+    $('#stag23').hide();
+    $('#softimg32').hide();
+});
+
+$("#soft37").hover(function(){
+    $('#stag23').show();
+    $('#softimg33').show();
+},function(){
+    $('#stag23').hide();
+    $('#softimg33').hide();
+});
+
+$("#soft38").hover(function(){
+    $('#stag24').show();
+    $('#softimg34').show();
+},function(){
+    $('#stag24').hide();
+    $('#softimg34').hide();
+});
+
+$("#soft35").hover(function(){
+    $('#stag25').show();
+    $('#softimg35').show();
+},function(){
+    $('#stag25').hide();
+    $('#softimg35').hide();
+});
+
+$("#soft46").hover(function(){
+    $('#stag25').show();
+    $('#softimg36').show();
+},function(){
+    $('#stag25').hide();
+    $('#softimg36').hide();
+});
+
+$("#soft36").hover(function(){
+    $('#stag25').show();
+    $('#softimg37').show();
+},function(){
+    $('#stag25').hide();
+    $('#softimg37').hide();
+});
+
+$("#soft41").hover(function(){
+    $('#stag25').show();
+    $('#softimg38').show();
+},function(){
+    $('#stag25').hide();
+    $('#softimg38').hide();
+});
+
+$("#soft47").hover(function(){
+    $('#stag26').show();
+    $('#softimg39').show();
+},function(){
+    $('#stag26').hide();
+    $('#softimg39').hide();
+});
+
+$("#soft1").hover(function(){
+    $('#stag18').show();
+},function(){
+    $('#stag18').hide();
+});
+
+$("#soft49").hover(function(){
+    $('#stag27').show();
+},function(){
+    $('#stag27').hide();
+});
+
+$("#soft50").hover(function(){
+    $('#stag28').show();
+},function(){
+    $('#stag28').hide();
+});
+
+$("#soft51").hover(function(){
+    $('#stag29').show();
+},function(){
+    $('#stag29').hide();
+});
+
+$("#soft52").hover(function(){
+    $('#stag30').show();
+},function(){
+    $('#stag30').hide();
+});
+
+$("#soft53").hover(function(){
+    $('#stag31').show();
+},function(){
+    $('#stag31').hide();
+});
+
+$("#soft54").hover(function(){
+    $('#stag42').show();
+},function(){
+    $('#stag42').hide();
+});
+
+$("#soft55").hover(function(){
+    $('#stag32').show();
+},function(){
+    $('#stag32').hide();
+});
+
+$("#soft56").hover(function(){
+    $('#stag33').show();
+},function(){
+    $('#stag33').hide();
+});
+
+$("#soft57").hover(function(){
+    $('#stag43').show();
+},function(){
+    $('#stag43').hide();
+});
+
+$("#soft58").hover(function(){
+    $('#stag34').show();
+},function(){
+    $('#stag34').hide();
+});
+
+$("#soft59").hover(function(){
+    $('#stag35').show();
+},function(){
+    $('#stag35').hide();
+});
+
+$("#soft60").hover(function(){
+    $('#stag44').show();
+},function(){
+    $('#stag44').hide();
+});
+
+$("#soft61").hover(function(){
+    $('#stag36').show();
+},function(){
+    $('#stag36').hide();
+});
+
+$("#soft62").hover(function(){
+    $('#stag37').show();
+},function(){
+    $('#stag37').hide();
+});
+
+$("#soft63").hover(function(){
+    $('#stag38').show();
+},function(){
+    $('#stag38').hide();
+});
+
+$("#soft64").hover(function(){
+    $('#stag39').show();
+},function(){
+    $('#stag39').hide();
+});
+
+$("#soft65").hover(function(){
+    $('#stag40').show();
+},function(){
+    $('#stag40').hide();
+});
+$("#soft28").hover(function(){
+    $('#stag41').show();
+    $('#softimg40').show();
+},function(){
+    $('#stag41').hide();
+    $('#softimg40').hide();
+});
+
+$("#soft15").hover(function(){
+    $('#stag41').show();
+    $('#softimg41').show();
+},function(){
+    $('#stag41').hide();
+    $('#softimg41').hide();
+});
+
+$("#soft48").hover(function(){
+    $('#stag41').show();
+    $('#softimg42').show();
+},function(){
+    $('#stag41').hide();
+    $('#softimg42').hide();
+});
+
+$("#soft66").hover(function(){
+    $('#stag41').show();
+    $('#softimg43').show();
+},function(){
+    $('#stag41').hide();
+    $('#softimg43').hide();
+});
+});
+
+
 document.getElementById("tren").onclick = function () {
         location.href = "idx_len.hta";
     };
+
+$(document).ready(function () {
+$("#tools").click(function(){
+    if($(".toolsbox").css('display') == 'none') {
+       document.body.style.overflow = "auto";
+    } else if($(".toolsbox").css('display') == 'block') {
+        document.body.style.overflow = "hidden";
+    }
+});
+});
+
+$(document).ready(function () {
+$(".closebtn").click(function(){
+   if($(".toolsbox").css('display') == 'none') {
+      document.body.style.overflow = "auto";
+   }
+    });
+   });
+
 </script>
+
+<img src="../bin/softimg/soft1.png" id="softimg1" />
+<img src="../bin/softimg/soft2.png" id="softimg2" />
+<img src="../bin/softimg/soft3.png" id="softimg3" />
+<img src="../bin/softimg/soft4.png" id="softimg4" />
+<img src="../bin/softimg/soft5.png" id="softimg5" />
+<img src="../bin/softimg/soft6.png" id="softimg6" />
+<img src="../bin/softimg/soft7.png" id="softimg7" />
+<img src="../bin/softimg/soft8.png" id="softimg8" />
+<img src="../bin/softimg/soft9.png" id="softimg9" />
+<img src="../bin/softimg/soft10.png" id="softimg10" />
+<img src="../bin/softimg/soft11.png" id="softimg11" />
+<img src="../bin/softimg/soft12.png" id="softimg12" />
+<img src="../bin/softimg/soft13.png" id="softimg13" />
+<img src="../bin/softimg/soft14.png" id="softimg14" />
+<img src="../bin/softimg/soft15.png" id="softimg15" />
+<img src="../bin/softimg/soft16.png" id="softimg16" />
+<img src="../bin/softimg/soft17.png" id="softimg17" />
+<img src="../bin/softimg/soft18.png" id="softimg18" />
+<img src="../bin/softimg/soft19.png" id="softimg19" />
+<img src="../bin/softimg/soft20.png" id="softimg20" />
+<img src="../bin/softimg/soft21.png" id="softimg21" />
+<img src="../bin/softimg/soft22.png" id="softimg22" />
+<img src="../bin/softimg/soft23.png" id="softimg23" />
+<img src="../bin/softimg/soft24.png" id="softimg24" />
+<img src="../bin/softimg/soft25.png" id="softimg25" />
+<img src="../bin/softimg/soft26.png" id="softimg26" />
+<img src="../bin/softimg/soft27.png" id="softimg27" />
+<img src="../bin/softimg/soft28.png" id="softimg28" />
+<img src="../bin/softimg/soft29.png" id="softimg29" />
+<img src="../bin/softimg/soft30.png" id="softimg30" />
+<img src="../bin/softimg/soft31.png" id="softimg31" />
+<img src="../bin/softimg/soft32.png" id="softimg32" />
+<img src="../bin/softimg/soft33.png" id="softimg33" />
+<img src="../bin/softimg/soft34.png" id="softimg34" />
+<img src="../bin/softimg/soft35.png" id="softimg35" />
+<img src="../bin/softimg/soft36.png" id="softimg36" />
+<img src="../bin/softimg/soft37.png" id="softimg37" />
+<img src="../bin/softimg/soft38.png" id="softimg38" />
+<img src="../bin/softimg/soft39.png" id="softimg39" />
+<img src="../bin/softimg/soft40.png" id="softimg40" />
+<img src="../bin/softimg/soft41.png" id="softimg41" />
+<img src="../bin/softimg/soft42.png" id="softimg42" />
+<img src="../bin/softimg/soft43.png" id="softimg43" />
 
 <div class="toolsbox">
 <p class="closebtn"><img class="iconx" src="_icons/x_icon.png"></img></p>
-<h2>Narzędzia</h2>
+<img class="hlabel" src="https://windowsbase.pl/icon-images/tools.png"/><h2>Narzędzia</h2>
+<p>Nagrywanie płyt CD/DVD</p>
 <ul class="listtoolbox">
-   <li id="soft1" onclick="runsoft1()">Uruchom konsolę CMD (wiersz poleceń)</li>
-   <li id="soft2" onclick="runsoft2()">Nagraj/utwórz obraz ISO <b>(BurnAware)</b></li>
-   <li id="soft3" onclick="runsoft3()">Nagraj/utwórz obraz IMG <b>(IMGBurn)</b></li>
-   <li id="soft4" onclick="runsoft4()">Zamontuj obraz ISO <b>(WinCDEmu)</b></li>
-   <li id="soft5" onclick="runsoft5()">Konwertuj obraz ISO do MDF <b>(MDF to ISO)</b></li>
-   <li id="soft6" onclick="runsoft6()">Konwertuj obraz WIM/ESD do ISO <b>(DISM++)</b> [32-bit]</li>
-   <li id="soft7" onclick="runsoft7()">Konwertuj obraz WIM/ESD do ISO <b>(DISM++)</b> [64-bit]</li>
-   <li id="soft8" onclick="runsoft8()">Utwórz nośnik instalacyjny <b>(Rufus)</b></li>
-   <li id="soft9" onclick="runsoft9()">Utwórz nośnik instalacyjny <b>(WinSetupFromUSB)</b> [32-bit]</li>
-   <li id="soft10" onclick="runsoft10()">Utwórz nośnik instalacyjny <b>(WinSetupFromUSB)</b> [64-bit]</li>
-   <li id="soft11" onclick="runsoft11()">Uruchom narzędzie do kompresji <b>(7-Zip)</b></li>
-   <li id="soft12" onclick="runsoft12()">Uruchom narzędzie do partycjonowania <b>Macronit Partition Expert</b> [32-bit]</li>
-   <li id="soft13" onclick="runsoft13()">Uruchom narzędzie do partycjonowania <b>Macronit Partition Expert</b> [64-bit]</li>
-   <li id="soft14" onclick="runsoft14()">Uruchom narzędzie do czyszczenia systemu <b>Command Clean</b></li>
+   <li id="soft2" onclick="runsoft2()">BurnAware</li>   
+   <li id="soft3" onclick="runsoft3()">IMGBurn</li>
+   <li id="soft29" onclick="runsoft29()">AnyBurn</li>
 </ul>
+
+<p id="stag1">Program umożliwiający nagrywanie obrazów ISO/MDF na płyty, tworzenie nośników, kopiowanie ich oraz kasowanie.</p>
+
+<p>Zarządzanie obrazami płyt</p>
+<ul class="listtoolbox">
+   <li id="soft4" onclick="runsoft4()">ImgDrive</b></li>
+   <li id="soft5" onclick="runsoft5()">MDF to ISO</li>
+</ul>
+
+<p id="stag2">Program umożliwiający montowanie obrazów ISO/MDF w wirtualnym napędzie optycznym.</p>
+<p id="stag3">Program umożliwiający konwersję pliku MDF do ISO.</p>
+
+<p>Zarządzanie plikami</p>
+<ul class="listtoolbox">
+   <li id="soft11" onclick="runsoft11()">7-Zip File Manager</li> 
+   <li id="soft22" onclick="runsoft22()">Total Commander</li>
+   <li id="soft18" onclick="runsoft18()">Unlocker</li>
+   <li id="soft24" onclick="runsoft24()">Toucan</li>
+   <li id="soft31" onclick="runsoft31()">Backup4Sure</li>
+   <li id="soft32" onclick="runsoft32()">BinText</li>
+   <li id="soft43" onclick="runsoft43()">Recuva</li>
+   <li id="soft44" onclick="runsoft44()">Puran File Recovery</li>
+   <li id="soft45" onclick="runsoft45()">SearchMyFiles</li>
+</ul>
+
+<p id="stag4">Program umożliwiający tworzenie skompresowanych archiwów.</p>
+<p id="stag5">Program do zarządzania plikami (eksplorator plików).</p>
+<p id="stag6">Program pomocny w przypadku odblokowania zablokowanego pliku lub folderu.</p>
+<p id="stag7">Program do tworzenia kopii zapasowej plików.</p>
+<p id="stag8">Program umożliwiający podgląd skompilowanej aplikacji (edytor hexadecymalny).</p>
+<p id="stag9">Program odzyskujący utracone dane.</p>
+<p id="stag10">Program do wyszukiwania plików znajdujących się na komputerze.</p>
+
+<p>Zarządzanie sterownikami</p>
+<ul class="listtoolbox">
+   <li id="soft25" onclick="runsoft25()">Display Driver Uninstaller</li>
+   <li id="soft26" onclick="runsoft26()">Double Driver</li>
+   <li id="soft27" onclick="runsoft27()">Driver Backup! 2</li>
+</ul>
+
+<p id="stag11">Program umożliwiający usunięcie sterowników od karty graficznej oraz blokadę ich instalacji z Windows Update.</p>
+<p id="stag12">Program do tworzenia i przywracania kopii zapasowej sterowników.</p>
+
+<p>Optymalizacja systemu</p>
+<ul class="listtoolbox">
+   <li id="soft6" onclick="runsoft6()">DISM++ [32-bit]</li>
+   <li id="soft7" onclick="runsoft7()">DISM++</li>
+   <li id="soft23" onclick="runsoft23()">Revo Uninstaller</li>
+   <li id="soft14" onclick="runsoft14()">Command Clean</li>
+   <li id="soft20" onclick="runsoft20()">Glary Utilities</li>
+   <li id="soft21" onclick="runsoft21()">CCleaner</li>
+   <li id="soft30" onclick="runsoft30()">Autoruns</li>
+   <li id="soft42" onclick="runsoft42()">Process Explorer</li>
+   <li id="soft39" onclick="runsoft39()">Mem Reduct [32-bit]</li>
+   <li id="soft40" onclick="runsoft40()">Mem Reduct</li>
+</ul>
+
+<p id="stag13">Program do zarządzania obrazem systemu i jego optymalizacji.</p>
+<p id="stag14">Program do usuwania programów i ich pozostałości.</p>
+<p id="stag15">Program optymalizujący system oraz usuwający pliki tymczasowe.</p>
+<p id="stag16">Program umożliwiający zarządzanie aktywnymi procesami w systemie.</p>
+<p id="stag17">Program oczyszczający zajętą pamięć RAM.</p>
+
+<p>Instalacja systemu i zbieranie danych</p>
+<ul class="listtoolbox">
+   <li id="soft8" onclick="runsoft8()">Rufus</li>
+   <li id="soft9" onclick="runsoft9()">WinSetupFromUSB [32-bit]</li>
+   <li id="soft10" onclick="runsoft10()">WinSetupFromUSB</li>
+   <li id="soft12" onclick="runsoft12()">Macronit Partition Expert [32-bit]</li>
+   <li id="soft13" onclick="runsoft13()">Macronit Partition Expert</li>
+   <li id="soft16" onclick="runsoft16()">ShowKeyPlus</li>
+   <li id="soft17" onclick="runsoft17()">ProduKey</li>
+   <li id="soft19" onclick="runsoft19()">Speecy</li>
+   <li id="soft34" onclick="runsoft34()">CPU-Z</li>
+   <li id="soft37" onclick="runsoft37()">GPU-Z</li>
+   <li id="soft38" onclick="runsoft38()">MACAdressView</li>
+   <li id="soft35" onclick="runsoft35()">Defender Control</li>
+   <li id="soft46" onclick="runsoft46()">Windows Update Blocker</li>
+   <li id="soft36" onclick="runsoft36()">Firewall App Blocker</li>
+   <li id="soft41" onclick="runsoft41()">O&O ShutUp10++</li>
+   <li id="soft47" onclick="runsoft47()">Registry Finder</li>
+</ul>
+
+<p id="stag19">Program do tworzenia nośników instalacyjnych.</p>
+<p id="stag20">Program do zarządzania partycjami na dysku.</p>
+<p id="stag21">Program do wyświetlania kluczy licencyjnych systemu Windows.</p>
+<p id="stag22">Program zbierający dane o zainstalowanych podzespołach</p>
+<p id="stag23">Program zbierający dane o zainstalowanych procesorach</p>
+<p id="stag24">Program zbierający dane o adresie MAC karty sieciowej.</p>
+<p id="stag25">Program umożliwiający zarządzanie usługami systemowymi.</p>
+<p id="stag26">Program umożliwiający edycję rejestru systemowego.</p>
+
+<p>Zarządzanie systemem</p>
+<ul class="listtoolbox">
+   <li id="soft1" onclick="runsoft1()">Wiersz poleceń (cmd)</li>
+   <li id="soft49" onclick="runsoft49()">Harmonogram zadań</li>
+   <li id="soft50" onclick="runsoft50()">Edytor rejestru</li>
+   <li id="soft51" onclick="runsoft51()">Usługi</li>
+   <li id="soft52" onclick="runsoft52()">Eksplorator plików</li>
+   <li id="soft53" onclick="runsoft53()">Konfiguracja systemu</li>
+   <li id="soft54" onclick="runsoft54()">Informacje o systemie</li>
+   <li id="soft55" onclick="runsoft55()">Notatnik</li>
+   <li id="soft56" onclick="runsoft56()">Zarządzanie dyskami</li>
+   <li id="soft57" onclick="runsoft57()">Zarządzanie urządzeniami</li>
+   <li id="soft58" onclick="runsoft58()">Zarządzanie użytkownikami</li>
+   <li id="soft59" onclick="runsoft59()">Edytor lokalnych zasad grupy</li>
+   <li id="soft60" onclick="runsoft60()">Zasady zabezpieczeń lokalnych</li>
+   <li id="soft61" onclick="runsoft61()">Podgląd zdarzeń</li>
+   <li id="soft62" onclick="runsoft62()">Monitor systemu</li>
+   <li id="soft63" onclick="runsoft63()">Oczyszczanie dysku</li>
+   <li id="soft64" onclick="runsoft64()">Właściwości systemu</li>
+   <li id="soft65" onclick="runsoft65()">Dodaj/Usuń programy</li>
+</ul>
+
+<p id="stag18">Otwórz wiersz poleceń</p>
+<p id="stag27">Dodaj zautomatyzowane zadania i procesy do uruchamiania zgodnie z harmonogramem</p>
+<p id="stag28">Edytuj rejestr systemu</p>
+<p id="stag29">Zarządzaj usługami systemowymi</p>
+<p id="stag30">Otwórz eksplorator plików</p>
+<p id="stag31">Zarządzaj konfiguracją systemu</p>
+<p id="stag32">Zapisz prosty teskt w postaci pliku</p>
+<p id="stag33">Twórz i przydzielaj partycje, woluminy i macierze na twoich dyskach twardych</p>
+<p id="stag34">Dodawaj, blokuj lub usuwaj użytkowników systemu</p>
+<p id="stag35">Zarządzaj zabezpieczeniami systemowymi</p>
+<p id="stag36">Podejrzyj logi systemowe</p>
+<p id="stag37">Sprawdź wydajność systemu</p>
+<p id="stag38">Oczyść dysk z zbędnych plików</p>
+<p id="stag39">Pokaż ustawienia systemu</p>
+<p id="stag40">Zarządzaj zainstalowanymi programami</p>
+<p id="stag42">Pokaż wszystkie informacje o systemie</p>
+<p id="stag43">Dodawaj i usuwaj urządzenia oraz aktualizuj sterowniki</p>
+<p id="stag44">Zmień ustawienia i definiuj reguły korzystania z systemu</p>
+
+<p>Emulatory i hyperwizory</p>
+<ul class="listtoolbox">
+   <li id="soft28" onclick="runsoft28()">VMWare Workstation</li>
+   <li id="soft15" onclick="runsoft15()">QEMU Emulator</li>
+   <li id="soft48" onclick="runsoft48()">QEMU Simple Boot</li>
+   <li id="soft66" onclick="runsoft66()">86Box</li>
+</ul>
+
+<p id="stag41">Program do emulowania działania sprzętu/systemu na twoim komputerze</p>
+
 </div>
 
 <div class="faqbox">
    <p class="closebtn"><img class="iconx" src="_icons/x_icon.png"></img></p>
-   <h2>Poradniki</h2>
+   <img class="hlabel" src="https://windowsbase.pl/icon-images/faq1.png"/><h2>Poradniki</h2>
    <ul class="listfaqbox">
       <li><a class="link_nhref" target="_blank" href="https://windowsbase.pl/pages/convertingesd.html">Konwersja plików ESD na ISO</a></li>
       <li><a class="link_nhref" target="_blank" href="https://windowsbase.pl/pages/vmconvert.html">Konwersja dysków wirtualnych</a></li>
@@ -285,7 +970,7 @@ document.getElementById("tren").onclick = function () {
 
    <div class="newsbox">
       <p class="closebtn"><img class="iconx" src="_icons/x_icon.png"></img></p>
-      <h2>Informacje i wiadomości</h2>
+      <img class="hlabel" src="https://windowsbase.pl/icon-images/news.png"/><h2>Wiadomości serwisowe</h2>
            <br>
          <iframe id="frmFile3" src="https://windowsbase.pl/uploads/app/news.hta"></iframe>
          <br><br>
@@ -341,11 +1026,13 @@ document.getElementById("tren").onclick = function () {
       $(".closebtn").click(function () {
             $("#dialog_bkg").hide();
             $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
          });
 
          $("#soft1").click(function () {
             $("#dialog_bkg").hide();
             $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
             var WshShell = new ActiveXObject("Wscript.Shell");
             WshShell.Run("cmd.exe");
          });
@@ -353,6 +1040,7 @@ document.getElementById("tren").onclick = function () {
          $("#soft2").click(function () {
             $("#dialog_bkg").hide();
             $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
             var WshShell = new ActiveXObject("Wscript.Shell");
             WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_baf.exe");
          });
@@ -360,6 +1048,7 @@ document.getElementById("tren").onclick = function () {
          $("#soft3").click(function () {
             $("#dialog_bkg").hide();
             $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
             var WshShell = new ActiveXObject("Wscript.Shell");
             WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_ib.exe");
          });
@@ -367,6 +1056,7 @@ document.getElementById("tren").onclick = function () {
          $("#soft4").click(function () {
             $("#dialog_bkg").hide();
             $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
             var WshShell = new ActiveXObject("Wscript.Shell");
             WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_wcd.exe");
          });
@@ -374,6 +1064,7 @@ document.getElementById("tren").onclick = function () {
          $("#soft5").click(function () {
             $("#dialog_bkg").hide();
             $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
             var WshShell = new ActiveXObject("Wscript.Shell");
             WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_mti.exe");
          });
@@ -381,6 +1072,7 @@ document.getElementById("tren").onclick = function () {
          $("#soft6").click(function () {
             $("#dialog_bkg").hide();
             $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
             var WshShell = new ActiveXObject("Wscript.Shell");
             WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_dism1.exe");
          });
@@ -388,6 +1080,7 @@ document.getElementById("tren").onclick = function () {
          $("#soft7").click(function () {
             $("#dialog_bkg").hide();
             $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
             var WshShell = new ActiveXObject("Wscript.Shell");
             WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_dism2.exe");
          });
@@ -395,6 +1088,7 @@ document.getElementById("tren").onclick = function () {
          $("#soft8").click(function () {
             $("#dialog_bkg").hide();
             $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
             var WshShell = new ActiveXObject("Wscript.Shell");
             WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_rfs.exe");
          });
@@ -402,6 +1096,7 @@ document.getElementById("tren").onclick = function () {
          $("#soft9").click(function () {
             $("#dialog_bkg").hide();
             $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
             var WshShell = new ActiveXObject("Wscript.Shell");
             WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_wsfu1.exe");
          });
@@ -409,6 +1104,7 @@ document.getElementById("tren").onclick = function () {
          $("#soft10").click(function () {
             $("#dialog_bkg").hide();
             $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
             var WshShell = new ActiveXObject("Wscript.Shell");
             WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_wsfu2.exe");
          });
@@ -416,6 +1112,7 @@ document.getElementById("tren").onclick = function () {
          $("#soft11").click(function () {
             $("#dialog_bkg").hide();
             $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
             var WshShell = new ActiveXObject("Wscript.Shell");
             WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\7z\\7zFM.exe");
          });
@@ -423,6 +1120,7 @@ document.getElementById("tren").onclick = function () {
          $("#soft12").click(function () {
             $("#dialog_bkg").hide();
             $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
             var WshShell = new ActiveXObject("Wscript.Shell");
             WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_mde1.exe");
          });
@@ -430,6 +1128,7 @@ document.getElementById("tren").onclick = function () {
          $("#soft13").click(function () {
             $("#dialog_bkg").hide();
             $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
             var WshShell = new ActiveXObject("Wscript.Shell");
             WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_mde2.exe");
          });
@@ -437,9 +1136,427 @@ document.getElementById("tren").onclick = function () {
          $("#soft14").click(function () {
             $("#dialog_bkg").hide();
             $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
             var WshShell = new ActiveXObject("Wscript.Shell");
             WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_cc.exe");
          });
+
+         $("#soft15").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_qe.exe");
+         });
+
+         $("#soft16").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_sk.exe");
+         });
+         
+         $("#soft17").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_pk.exe");
+         });
+         
+         $("#soft18").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_ul.exe");
+         });
+         
+         $("#soft19").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_sp.exe");
+         });
+         
+         $("#soft20").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_gu.exe");
+         });
+         
+         $("#soft21").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_ccp.exe");
+         });
+         
+         $("#soft22").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_tc.exe");
+         });
+         
+         $("#soft23").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_ru.exe");
+         });
+         
+         $("#soft24").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_toc.exe");
+         });
+         
+         $("#soft25").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_ddu.exe");
+         });
+         
+         $("#soft26").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_dd.exe");
+         });
+         
+         $("#soft27").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_db2.exe");
+         });
+         
+         $("#soft28").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_vm.exe");
+         });
+         
+         $("#soft29").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_ab.exe");
+         });
+         
+         $("#soft30").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_ar.exe");
+         });
+         
+         $("#soft31").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_b4.exe");
+         });
+         
+         $("#soft32").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_bt.exe");
+         });
+         
+         // $("#soft33").click(function () {
+         //    $("#dialog_bkg").hide();
+         //    $(".toolsbox").hide();
+         //    document.body.style.overflow = "auto";
+         //    var WshShell = new ActiveXObject("Wscript.Shell");
+         //    WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_cc.exe");
+         // });
+         
+         $("#soft34").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_cz.exe");
+         });
+         
+         $("#soft35").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_dc.exe");
+         });
+         
+         $("#soft36").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_fb.exe");
+         });
+         
+         $("#soft37").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_gz.exe");
+         });
+         
+         $("#soft38").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_mav.exe");
+         });
+         
+         $("#soft39").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_mr32.exe");
+         });
+         
+         $("#soft40").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_mr64.exe");
+         });
+         
+         $("#soft41").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_oo.exe");
+         });
+         
+         $("#soft42").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_pe.exe");
+         });
+         
+         $("#soft43").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_rcva.exe");
+         });
+         
+         $("#soft44").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_pfr.exe");
+         });
+         
+         $("#soft45").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_sf.exe");
+         });
+                  
+         $("#soft46").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_wub.exe");
+         });
+                  
+         $("#soft47").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_rf.exe");
+         });
+             
+         $("#soft48").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_qs.exe");
+         });             
+         
+         $("#soft49").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("taskschd.msc");
+         });
+             
+         $("#soft50").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("regedit.exe");
+         });
+             
+         $("#soft51").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("services.msc");
+         });
+             
+         $("#soft52").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("explorer.exe");
+         });
+             
+         $("#soft53").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("msconfig.exe");
+         });
+             
+         $("#soft54").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("msinfo32.exe");
+         });
+             
+         $("#soft55").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("notepad.exe");
+         });
+             
+         $("#soft56").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("diskmgmt.msc");
+         });
+             
+         $("#soft57").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("devmgmt.msc");
+         });
+             
+         $("#soft58").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("lusrmgr.msc");
+         });
+             
+         $("#soft59").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("gpedit.msc");
+         });
+             
+         $("#soft60").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("secpol.msc");
+         });
+
+         $("#soft61").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("eventvwr.msc");
+         });
+
+         $("#soft62").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("perfmon.msc");
+         });
+
+         $("#soft63").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("cleanmgr.exe");
+         });
+
+         $("#soft64").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_sysc.exe");
+         });
+
+         $("#soft65").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_appw.exe");
+         });
+
+         $("#soft66").click(function () {
+            $("#dialog_bkg").hide();
+            $(".toolsbox").hide();
+            document.body.style.overflow = "auto";
+            var WshShell = new ActiveXObject("Wscript.Shell");
+            WshShell.Run("%userprofile%\\AppData\\Local\\WBdownloader\\bin\\sd\\sdown_86b.exe");
+         });
+
 
          function runInfo() {
          var WshShell = new ActiveXObject("Wscript.Shell");

@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
 
 * {
-   font-family: 'Open Sans', sans-serif;
+   font-family: 'Lexend', sans-serif;
 }
 
 html,
@@ -13,18 +13,20 @@ body {
    background: url('../data/bkg.jpg');
    background-size: cover;
    background-attachment: fixed;
+   background-position: center;
    margin: 0 auto;
 }
 
 .section {
    margin-top: 30px;
-   width: 720px;
+   width: 640px;
    margin-left: auto;
    margin-right: auto;
    margin-bottom: 100px;
    height: auto;
-   border: 2px solid white;
-   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#4cffffff', endColorstr='#4cffffff');
+   border: 2px solid #649ac7;
+   box-shadow: 2px 5px 15px #262b30;
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6323c54', endColorstr='#a6323c54',GradientType=0 );
    -webkit-border-radius: 5px;
    -moz-border-radius: 5px;
    border-radius: 5px;
@@ -62,12 +64,28 @@ img {
    display: none;
 }
 
+.hlabel {
+   max-width: 32px; 
+   height: 32px;
+   display: inline-block;
+   position: absolute;
+   top: 20px;
+   left: 20px;
+}
+
+.hlabel1 {
+   max-width: 16px; 
+   height: 16px;
+   display: inline-block;
+   position: relative;
+}
+
 .icon {
     display: block;
     width: 32px;
     position: fixed;
     position: sticky;
-    right: 45px;
+    right: 20px;
     top: 110px;
     cursor: pointer;
 }
@@ -77,7 +95,7 @@ img {
     width: 32px;
     position: fixed;
     position: sticky;
-    right: 45px;
+    right: 20px;
     top: 160px;
     cursor: pointer;
 }
@@ -87,7 +105,7 @@ img {
     width: 32px;
     position: fixed;
     position: sticky;
-    right: 45px;
+    right: 20px;
     top: 210px;
     cursor: pointer;
 }
@@ -97,7 +115,7 @@ img {
     width: 32px;
     position: fixed;
     position: sticky;
-    right: 45px;
+    right: 20px;
     top: 260px;
     cursor: pointer;
 }
@@ -107,7 +125,7 @@ img {
     width: 32px;
     position: fixed;
     position: sticky;
-    right: 45px;
+    right: 20px;
     top: 310px;
     cursor: pointer;
 }
@@ -117,25 +135,67 @@ img {
    width: 32px;
    position: fixed;
    position: sticky;
-   right: 45px;
+   right: 20px;
    top: 360px;
    cursor: pointer;
 }
 
+.icon7 {
+   display: block;
+   width: 32px;
+   position: fixed;
+   position: sticky;
+   right: 16px;
+   top: 500px;
+   cursor: pointer;
+}
+
+.icon8 {
+   display: block;
+   width: 32px;
+   position: fixed;
+   position: sticky;
+   right: 16px;
+   top: 550px;
+   cursor: pointer;
+}
+
+.rlight1, .rlight2 {
+width: 8px;
+height: 8px;
+background-color: red;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+behavior: url(bin/PIE.htc);
+position: relative;
+z-index: 1;
+display: block;
+}
+
+.rlight1 {
+top: 500px;
+right: -30px;
+}
+
+ .rlight2 {
+top: 543px;
+right: -30px;
+
+}  
+
 .menu {
-    width: 40px;
-    height: 310px;
+    width: 50px;
+    height: 100vh;
     padding: 0px 10px;
-    background-color: #001e3a;
+    background-color: #202940;
     display: block;
     position: fixed;
     position: sticky;
-    top: 100px;
-    right: 30px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
-    behavior: url(bin/PIE.htc);
+    top: 0px;
+    right: 0px;
+    box-shadow: -2px 5px 15px #262b30;
+    z-index: 1;
 }
 
 ul, ol, li {
@@ -155,6 +215,18 @@ h3 {
    font-weight: bold;
 }
 
+.s3, .s4 {
+   color: #0bec7b;
+   display: block;
+   width: 100%;
+   font-size: 14px;
+   word-wrap: break-word;
+}
+
+.s4 {
+   font-weight: bold;
+}
+
 a:hover {
    color: cadetblue;
 }
@@ -165,6 +237,7 @@ a:hover {
    display: none;
    width: 100%;
    background: #e9e92e;
+   border-bottom: 1px solid goldenrod;
    padding: 10px 0px;
    cursor: pointer;
 }
@@ -184,11 +257,13 @@ a:hover {
    width: 100%;
    padding: 10px 0px;
    margin: 0 0 20px 0;
-   border: 0;
-   box-shadow: 2px 2px 2px #004175;
-   border-collapse: separate;
-   background: #1e5799;
-   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e5799', endColorstr='#7db9e8', GradientType=0);
+   box-shadow: 2px 2px 2px #262b30;
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#3f4c6b',GradientType=0 );
+   border: 1px solid slategray;
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   border-radius: 3px;
+   behavior: url(bin/PIE.htc);
 }
 
 .search {
@@ -198,32 +273,23 @@ a:hover {
    right: 0;
    width: 100%;
    display: block;
-   background: #ffffff;
+   background: #202940;
    padding:0;
    border-top: 3px solid rgb(51, 163, 255);
    display: none;
+   color: white;
 }
 
 .search_bar,
 #button {
-   border: 1px solid #397ebe;
+   border: 1px solid #34506b;
    -webkit-border-radius: 8px;
    -moz-border-radius: 8px;
    border-radius: 8px;
-   -webkit-box-shadow: #666 0px 2px 10px;
-   -moz-box-shadow: #666 0px 2px 10px;
-   box-shadow: #666 0px 2px 10px;
-   background: #A8D7FF;
-   background: -webkit-gradient(linear, 0 0, 0 bottom, from(#A8D7FF), to(#A8D7FF));
-   background: -webkit-linear-gradient(#A8D7FF, #A8D7FF);
-   background: -moz-linear-gradient(#A8D7FF, #A8D7FF);
-   background: -ms-linear-gradient(#A8D7FF, #A8D7FF);
-   background: -o-linear-gradient(#A8D7FF, #A8D7FF);
-   background: linear-gradient(#A8D7FF, #A8D7FF);
-   -pie-background: linear-gradient(#A8D7FF, #A8D7FF);
+   background: #2a3c61;
    behavior: url(bin/PIE.htc);
    padding: 5px;
-   color: black;
+   color: white;
 }
 
 .search_bar {
@@ -238,14 +304,14 @@ a:hover {
    position: fixed;
    position: sticky;
    top: 30vh;
-   left: 22vw;
-   width: 50%;
+   left: 18vw;
+   width: 60%;
    display: block;
    background: #ffffff;
    border: 3px solid rgb(51, 163, 255);
    padding: 20px;
    display: none;
-   z-index: 2;
+   z-index: 1;
 }
 
 #dialog_bkg {
@@ -297,16 +363,18 @@ a:hover {
 }
 
 .toolsbox, .faqbox, .newsbox {
-   background: white;
+   background: #202940;
    border-left: 2px solid steelblue;
    height: 100%;
    position: fixed;
    position: sticky;
-   width: 25%;
+   width: 30%;
    z-index: 3;
    right: 0;
    top: 0;
    display: none;
+   overflow-y: auto;
+   color: snow;
 }
 
 .listtoolbox li, .listfaqbox li, .listnewsbox li {
@@ -316,20 +384,32 @@ a:hover {
    font-size: 12px;
    padding-right: 10px;
    padding-bottom: 10px;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .listtoolbox li:hover, .listfaqbox li:hover, .listnewsbox li:hover {
    color: rgb(45, 124, 214);
    text-decoration: underline;
    cursor: pointer;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.toolsbox p {
+   font-weight: bold;
+   font-size: 13px;
+   text-align: left;
+   text-indent: 15px;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   color: white;
 }
 
 .closebtn {
    position: fixed;
    position: sticky;
    top:0;
-   right: 20px;
+   right: 30px;
    font-weight: bold;
+   cursor: pointer;
 }
 
 .closebtn2 {
@@ -338,13 +418,15 @@ a:hover {
     bottom:25px;
     right: 25px;
     font-weight: bold;
+    cursor: pointer;
  }
 
  .closebtn3 {
    position: fixed;
    position: sticky;
-   top:32vh;
-   right: 25vw ;
+   top:30vh;
+   right:20vw ;
+   cursor: pointer;
 }
 
 .link_nhref {
@@ -362,18 +444,19 @@ a:hover {
     margin: 20px auto;
 }
 
-.icon:hover, .icon2:hover, .icon3:hover, .icon4:hover, .icon5:hover {
+.icon:hover, .icon2:hover, .icon3:hover, .icon4:hover, .icon5:hover, .icon6:hover, .icon7:hover, .icon8:hover {
    background-color: #0099ff;
    -webkit-border-radius: 10px;
    -moz-border-radius: 10px;
    border-radius: 10px;
    padding:5px;
-   right:40px;
+   right:15px;
    behavior: url(bin/PIE.htc);
    transition: linear 0.4s;
 }
 
-.tag_1, .tag_2, .tag_3, .tag_4, .tag_5, .tag_6 {
+
+.tag_1, .tag_2, .tag_3, .tag_4, .tag_5, .tag_6, .tag_7, .tag_8 {
    display: none;
    padding: 5px;
    position: fixed;
@@ -385,6 +468,41 @@ a:hover {
    background-color: white;
    border: 1px solid #2d7cd6;
    width: 120px;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#stag1, #stag2, #stag3, #stag4, #stag5, #stag6, #stag7, #stag8, #stag9, #stag10,
+#stag11, #stag12, #stag13, #stag14, #stag15, #stag16, #stag17, #stag18, #stag19, #stag20,
+#stag21, #stag22, #stag23, #stag24, #stag25, #stag26, #stag27, #stag28, #stag29, #stag30,
+#stag31,  #stag32, #stag33, #stag34, #stag35, #stag36, #stag37, #stag38, #stag39, #stag40,
+#stag41, #stag42, #stag43, #stag44 {
+   display: none;
+   padding: 10px;
+   position: fixed;
+   position: sticky;
+   background-color: #1a2029;
+   border: 1px solid #2d7cd6;
+   width: 67.45vw;
+   left: 0px;
+   bottom: -12px;
+   color: white;
+   text-align: left;
+   text-indent: 0px;
+}
+
+#softimg1, #softimg2, #softimg3, #softimg4, #softimg5, #softimg6, #softimg7, #softimg8, #softimg9, #softimg10,
+#softimg11, #softimg12, #softimg13, #softimg14, #softimg15, #softimg16, #softimg17, #softimg18, #softimg19, #softimg20,
+#softimg21, #softimg22, #softimg23, #softimg24, #softimg25, #softimg26, #softimg27, #softimg28, #softimg29, #softimg30,
+#softimg31,  #softimg32, #softimg33, #softimg34, #softimg35, #softimg36, #softimg37, #softimg38, #softimg39, #softimg40,
+#softimg41, #softimg42, #softimg43 {
+   display: none;
+   width: 60vw;
+   height: 60vh;
+   position: absolute;
+   top: 50px;
+   left: 50px;
+   border: 3px solid steelblue;
+   z-index: 1;
 }
 
 .tag_1 {
@@ -415,6 +533,20 @@ a:hover {
 .tag_6 {
    right: 100px;
    top: 363px;
+}
+
+.tag_7 {
+   right: 100px;
+   top: 493px;
+}
+
+.tag_8 {
+   right: 100px;
+   top: 543px;
+}
+
+#uap, #udb {
+   display: none;
 }
 
 #frmFile3 {
